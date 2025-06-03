@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjai Srigaanth - Data Scientist</title>
+     <!-- Add Google Font Link Here -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap" rel="stylesheet">
+     <!-- End Google Font Link -->
+    <!-- Add Fontshare Link for Satoshi -->
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+    <!-- End Fontshare Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- End Google Font Link -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+    --bg-color: #eef1f5;
+    --card-bg: #ffffff;
+    --card-shadow-light: rgba(255, 255, 255, 0.8);
+    --card-shadow-dark: rgba(163, 177, 198, 0.6);
+    --text-color-primary: #333;
+    --text-color-secondary: #555;
+    --accent-color: #2d3960; /* Base: 45, 57, 96 */
+    --accent-color-hover:#465892; /* Base: 70, 88, 146 */
+    --nav-bg: #2d333b; /* Not used for these glassy elements now */
+    --nav-text: #e0e0e0;
+    --nav-hover-bg: #444c56; /* Not used for glassy hover now */
+
+    /* --- ADD Glassy RGBA Variables --- */
+    --accent-color-rgba-base: rgba(45, 57, 96, 0.9); /* FROM 0.6 (example) TO 0.75 or 0.8 */
+    --accent-color-rgba-hover: rgba(70, 88, 146, 0.85); /* FROM 0.75 (example) TO 0.85 or 0.9 */
+    /* Hover glass bg */
+    --glass-border-color: rgba(255, 255, 255, 0.5); /* Keep this subtle */
+    --glass-shine-gradient: linear-gradient(to top left, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 10%, rgba(255, 255, 255, 0) 60%);
+    /* --- END Glassy Variables --- */
+
+    --border-radius-sm: 8px;
+    --border-radius-md: 15px;
+    --border-radius-lg: 20px;
+    --transition-speed: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 200px;
+        }
+
+        body {
+            font-family: Inter, "Inter Placeholder", sans-serif;
+            color: var(--text-color-primary);
+            line-height: 1.6;
+            padding-bottom: 100px;
+            font-size: 16px;
+
+            /* --- HIGH CONTRAST NOISE TEXTURE (for testing) --- */
+            background-color: var(--bg-color); /* Base color */
+            /* Increased slope and rect opacity, adjusted frequency */
+            background-image:  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="10.0" numOctaves="3" stitchTiles="stitch" result="turbulence"/><feComponentTransfer in="turbulence" result="visibleNoise"><feFuncA type="linear" slope="0.5"/></feComponentTransfer><feColorMatrix type="saturate" values="0" in="visibleNoise"/></filter></defs><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="2.0"/></svg>');
+             /* --- END OF TEXTURE --- */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- Header --- */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 40px;
+            position: sticky;
+            top: 0;
+            background-color: rgba(238, 241, 245, 0.5); /* Semi-transparent background */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 100;
+            /* --- ADDED FOR FADING/BLENDING EFFECT --- */
+
+            /* Define the mask: A gradient from opaque (white) to transparent (black/transparent) */
+            mask-image: linear-gradient(to bottom,              /* Gradient direction */
+                                        white 70%,            /* Start solid white (fully visible) */
+                                        transparent 100%       /* Fade to transparent at the very bottom */
+                                        );
+
+            /* Add vendor prefix for wider compatibility */
+            -webkit-mask-image: linear-gradient(to bottom,
+                                                white 60%,            /* Start solid white (fully visible) */
+                                                transparent 100%       /* Fade to transparent at the very bottom */
+                                                );
+
+            /* Ensure no border is present */
+            border-bottom: none;
+
+            /* --- END OF FADING/BLENDING EFFECT --- */
+        }
+
+        /* Find this rule */
+        .site-header .logo {
+        /* font-size: 1.8em; */ /* Keep original or adjust as needed */
+            font-size: 2.2em; /* Example: Increase size slightly for cursive */
+        /* CHANGE THESE LINES: */
+            font-weight: 400; /* Use the imported weight (Regular) */
+            font-family: 'Dancing Script', cursive; /* Apply the new font */
+            color: var(--text-color-primary);
+        /* Optional: Adjust line-height or margin if needed */
+            line-height: 1; /* May help vertical alignment */
+            margin-bottom: -5px; /* Example: Minor adjustment if needed */
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: var(--text-color-secondary);
+        }
+
+        /* === New Status Dot Styles === */
+        .status-dot {
+            position: relative;        /* equivalent to 'relative' */
+            display: inline-flex;      /* equivalent to 'inline-flex' */
+            /* Using rem for size consistency, 0.5rem = 8px if base font-size is 16px */
+            height: 0.5rem;            /* equivalent to 'h-2' */
+            width: 0.5rem;             /* equivalent to 'w-2' */
+            /* Add margin for spacing from text, adjust as needed */
+            margin-right: 8px;
+            vertical-align: middle;    /* Helps align dot with text */
+        }
+
+        /* The outer 'pinging' ring */
+        .status-dot::before {
+            content: '';
+            position: absolute;         /* equivalent to 'absolute' */
+            display: inline-flex;       /* equivalent to 'inline-flex' */
+            height: 100%;               /* equivalent to 'h-full' */
+            width: 100%;                /* equivalent to 'w-full' */
+            border-radius: 9999px;      /* equivalent to 'rounded-full' */
+            /* Tailwind green-400 */
+            background-color: #4ade80;  /* equivalent to 'bg-green-400' */
+            opacity: 0.75;              /* equivalent to 'opacity-75' */
+            /* Apply the ping animation */
+            animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; /* equivalent to 'animate-ping' */
+        }   
+
+        /* The inner solid dot */
+            .status-dot::after {
+            content: '';
+            position: relative;         /* equivalent to 'relative' */
+            display: inline-flex;       /* equivalent to 'inline-flex' */
+            border-radius: 9999px;      /* equivalent to 'rounded-full' */
+        /* Using rem for size consistency */
+            height: 0.5rem;             /* equivalent to 'h-2' */
+            width: 0.5rem;              /* equivalent to 'w-2' */
+        /* Tailwind green-500 */
+            background-color: #22c55e;  /* equivalent to 'bg-green-500' */
+        }
+        /* =========================== */
+
+        .social-icons-header a {
+            color: var(--text-color-secondary);
+            font-size: 1.2em;
+            margin-left: 15px;
+            transition: color var(--transition-speed);
+        }
+
+        .social-icons-header a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Shared Card Styles --- */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 30px;
+            box-shadow:
+                -6px -6px 12px var(--card-shadow-light),
+                6px 6px 12px var(--card-shadow-dark);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .card:hover {
+           /* Slightly lift card on hover - subtle */
+           /* transform: translateY(-5px); */ 
+           box-shadow:
+            -8px -8px 16px var(--card-shadow-light), /* Slightly stronger light shadow */
+            8px 8px 16px var(--card-shadow-dark); 
+        }
+
+        /* --- Home Section --- */
+        #home {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .home-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Profile Card (Left Sidebar) */
+        .profile-card {
+            background: linear-gradient(145deg, #f0f4f8, #d9dde4);
+            border-radius: var(--border-radius-lg);
+            padding: 30px;
+            text-align: center;
+            box-shadow:
+                -8px -8px 16px var(--card-shadow-light),
+                8px 8px 16px var(--card-shadow-dark);
+            position: sticky; /* Make sidebar sticky */
+            top: 120px; /* Adjust based on header height */
+        }
+
+        .profile-image img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid var(--card-bg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-card .availability{
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 0.85em;
+        }
+
+        .profile-card h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            font-family: Satoshi, "Satoshi Placeholder", sans-serif;
+            font-weight: 400;
+        }
+
+        .profile-card .title {
+            font-size: 0.95em;
+            color: var(--text-color-secondary);
+            margin-bottom: 20px;
+        }
+
+        .profile-social-links a {
+            color: var(--text-color-secondary);
+            font-size: 1.3em;
+            margin: 0 10px;
+            transition: color var(--transition-speed);
+        }
+
+        .profile-social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-me-btn {
+            display: inline-block;
+    /* Change background */
+            background-color: var(--accent-color-rgba-base);
+            background-image: var(--glass-shine-gradient);
+            color: var(--nav-text); /* Keep text light */
+            padding: 12px 30px;
+            border-radius: var(--border-radius-sm);
+    /* Add border */
+            border: 1px solid var(--glass-border-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 25px;
+            transition: background-color var(--transition-speed), transform var(--transition-speed), border-color var(--transition-speed); /* Add border transition */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Keep shadow */
+        }
+
+        .contact-me-btn i {
+            margin-right: 8px;
+        }
+
+        .contact-me-btn:hover {
+            background-color: var(--accent-color-rgba-hover); /* Use darker RGBA */
+            /* Optionally slightly change border on hover */
+            /* border-color: rgba(255, 255, 255, 0.3); */
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Area (Right Side) */
+        .main-content {
+            padding-top: 20px;
+        }
+        .main-content h2{
+            font-weight: 400;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            color: var(--text-color-secondary);
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #d1d9e6; /* Softer line */
+            margin: 40px 0;
+        }
+
+        /* Skills Tags */
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            background-color: #e0e5ec;
+            color: var(--text-color-secondary);
+            padding: 6px 15px;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.85em;
+            border: 1px solid #d1d9e6;
+             box-shadow:
+                -2px -2px 4px var(--card-shadow-light),
+                2px 2px 4px var(--card-shadow-dark);
+        }
+        
+        /* Experience List */
+        .experience-list .experience-item {
+            background-color: #f7f9fc; /* Slightly different bg for list items */
+            border-radius: var(--border-radius-md);
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--transition-speed);
+            border: 1px solid #e8ecf1;
+             box-shadow:
+                -3px -3px 6px var(--card-shadow-light),
+                3px 3px 6px var(--card-shadow-dark);
+        }
+
+        .experience-item:hover {
+             background-color: #ffffff;
+        }
+
+        .experience-item .role {
+            font-weight: 400;
+            font-size: 1.1em;
+        }
+        .experience-item .company {
+            color: var(--text-color-secondary);
+            font-size: 0.95em;
+        }
+
+        .experience-item .year {
+            font-weight: 500;
+            color: var(--text-color-secondary);
+            font-size: 0.95em;
+        }
+
+        /* --- Section Heading --- */
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-top: 80px; /* Offset for sticky header/nav */
+            font-weight: 400;
+        }
+
+        .section-heading h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .section-heading p {
+            font-size: 1.1em;
+            color: var(--text-color-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Services Section --- */
+        #services {
+           padding-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            text-align: left; /* Align text left in cards */
+            padding: 35px;
+            font-weight: 400;
+        }
+        .service-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+    /* Add or modify the font-weight */
+            font-weight: 400; /* Try 500 (Medium) or 600 (Semi-bold) */
+        }
+
+        .service-card .icon {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            display: inline-block; /* To contain the icon */
+            background-color: #e0eaf5;
+            padding: 15px;
+            border-radius: 12px;
+            line-height: 1; /* Prevent extra space */
+            box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff;
+        }
+
+         .service-card img {
+            width: 100%;
+            height: 150px; /* Adjust as needed */
+            object-fit: cover;
+            border-radius: var(--border-radius-md);
+            margin-top: 20px;
+            opacity: 0.85;
+         }
+
+        .service-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 0.95em;
+            color: var(--text-color-secondary);
+        }
+
+        /* --- Projects Section --- */
+        #projects {
+           padding-bottom: 60px; /* Consistent spacing */
+        }
+
+        .projects-grid {
+            /* CHANGED: Use Flexbox for row-specific sizing */
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            gap: 30px;       /* Keep the gap between cards */
+            margin-top: 30px; /* Space below heading */
+        }
+
+        .project-card {
+            /* Inherits base styles from .card */
+            display: flex; /* Use flexbox for layout within the card */
+            flex-direction: column; /* Stack image and content vertically */
+            /* Default width for items from the 3rd onwards (50/50 layout) */
+            /* Calculate basis considering the gap: (100% - gap) / 2 */
+            flex-basis: calc(50% - (30px / 2));
+            flex-grow: 0; /* Prevent items from growing to fill space unnecessarily */
+            flex-shrink: 0; /* Prevent items from shrinking */
+            
+        }
+
+        /* --- Target the FIRST card in the grid --- */
+        .project-card:nth-child(1) {
+             /* Make it wider - Adjust percentage as desired (e.g., 60%) */
+             flex-basis: calc(60% - (30px / 2));
+        }
+
+        /* --- Target the SECOND card in the grid --- */
+        .project-card:nth-child(2) {
+             /* Make it narrower - Complementing the first card (e.g., 40%) */
+             flex-basis: calc(40% - (30px / 2));
+        }
+
+        /* --- Target the IMAGE within the SECOND card to make it shorter --- */
+        .project-card:nth-child(2) img {
+            height: 180px; /* Adjust this value - make it less than the default */
+        }
+                /* --- Target the THIRD card in the grid (Start of Row 2 - Narrower) --- */
+                .project-card:nth-child(3) {
+             /* Make it narrower - Mirroring card 2's width */
+             flex-basis: calc(40% - (30px / 2));
+        }
+
+        /* --- Target the IMAGE within the THIRD card to make it shorter --- */
+        .project-card:nth-child(3) img {
+            height: 180px; /* Mirroring card 2's image height - Adjust if needed */
+        }
+
+        /* --- Target the FOURTH card in the grid (Second on Row 2 - Wider) --- */
+        .project-card:nth-child(4) {
+             /* Make it wider - Mirroring card 1's width */
+             flex-basis: calc(60% - (30px / 2));
+        }
+
+        /* Ensure image height for the 4th card uses the default */
+        /* (This rule might not be strictly necessary if the default is already set,
+           but explicitly adding it can prevent unexpected overrides) */
+        .project-card:nth-child(4) img {
+             height: 220px; /* Reset to default height if it was changed elsewhere */
+        }
+
+        .project-card img {
+            width: 100%;
+            /* Default height for images (used by card 1, 3, 4...) */
+            height: 220px;
+            object-fit: cover; /* Cover the area without stretching */
+             border-radius: var(--border-radius-md);
+             display: block; /* Remove extra space below image */
+             /* If the image height change makes content alignment look odd,
+                you might need to ensure the .project-content grows */
+        }
+
+        .project-content {
+             padding: 20px;
+             flex-grow: 1; /* Ensure content area takes remaining space */
+             display: flex;
+             flex-direction: column;
+        }
+
+        .project-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: var(--text-color-primary);
+            font-weight: 400;
+        }
+
+        .project-card p {
+            font-size: 0.95em;
+            color: var(--text-color-secondary);
+            margin-bottom: 20px;
+            /* flex-grow: 1; Removed from here, added to parent .project-content */
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto; /* Push tags to the bottom */
+        }
+
+        /* Optional: Style for a project link/button if you add one */
+        .project-link {
+             display: inline-block;
+             margin-top: 15px;
+             color: var(--accent-color);
+             text-decoration: none;
+             font-weight: 500;
+             transition: color var(--transition-speed);
+        }
+        .project-link:hover {
+             color: var(--accent-color-hover);
+             text-decoration: underline;
+
+        }
+        .project-link i {
+             margin-left: 5px;
+             display: inline-block; /* Crucial for reliable transform/transition */
+            /* Initial State: Rotate to North-East (-45 degrees) */
+             transform: rotate(-45deg);
+            /* Add transition specifically for the transform property */
+            transition: transform var(--transition-speed) ease-in-out;
+            transition: transform 0.3s ease-in-out;
+            /* Optional: Adjust vertical alignment slightly if needed */
+             vertical-align: middle; 
+        }
+        .project-link:hover i {
+            transform: rotate(0deg);
+            
+        }
+
+        /* --- Responsive Adjustments for Projects --- */
+        @media (max-width: 768px) {
+            /* On smaller screens, make all cards full width */
+             .project-card,
+             .project-card:nth-child(1),
+             .project-card:nth-child(2) {
+                 flex-basis: 100%; /* Stack them */
+             }
+
+             /* Optional: Reset image heights if desired on mobile */
+             /* .project-card img,
+             .project-card:nth-child(2) img {
+                 height: 200px;
+             } */
+             .project-card h3 {
+                 font-size: 1.3em;
+             }
+        }
+
+
+        /* --- Contact Section --- */
+        #contact {
+           padding-bottom: 80px;
+        }
+
+         .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+         }
+         .contact-header .tag { /* Re-using tag style for the 'Contact' label */
+             display: inline-block;
+             margin-bottom: 15px;
+             background-color: var(--card-bg); /* Match card background */
+         }
+         .contact-header h2 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 400;
+         }
+          .contact-header p {
+            font-size: 1.1em;
+            color: var(--text-color-secondary);
+         }
+
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Adjust ratio as needed */
+            gap: 30px;
+            align-items: start;
+        }
+
+        .contact-options .card {
+            margin-bottom: 30px;
+        }
+        .contact-options .card h3 {
+            display: inline-block;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            vertical-align: middle;
+            /* Add or modify the font-weight */
+            font-weight: 400;
+        }
+
+        .contact-options .card i {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: var(--accent-color);
+            vertical-align: middle;
+        }
+
+        .contact-options h3 {
+            display: inline-block; /* Keep icon and text together */
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            vertical-align: middle;
+        }
+
+        .contact-options p {
+            color: var(--text-color-secondary);
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .contact-options a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+         .contact-options a:hover {
+            text-decoration: underline;
+         }
+
+        /* Contact Form */
+        .contact-form .card {
+            padding: 40px; /* More padding for the form */
+        }
+        .contact-form .card h3 {
+    /* Add or modify the font-weight */
+            font-weight: 400; /* Try 500 (Medium) or 600 (Semi-bold) */
+    /* Add any other existing styles for this h3 if needed */
+            margin-bottom: 25px; /* Add some space below this heading */
+        }
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 400;
+            font-size: 0.9em;
+            color: var(--text-color-secondary);
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d1d9e6;
+            border-radius: var(--border-radius-sm);
+            background-color: #f7f9fc; /* Slightly different input bg */
+            font-family: inherit;
+            font-size: 1em;
+            color: var(--text-color-primary);
+            box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff70;
+             transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+         .contact-form input[type="text"]:focus,
+         .contact-form input[type="email"]:focus,
+         .contact-form textarea:focus {
+             outline: none;
+             border-color: var(--accent-color);
+             box-shadow: inset 1px 1px 2px #babecc, inset -2px -2px 4px #ffffff70, 0 0 0 2px rgba(59, 66, 82, 0.3); /* Focus ring */
+         }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: inline-block;
+    /* Change background */
+            background-color: var(--accent-color-rgba-base);
+            background-image: var(--glass-shine-gradient);
+            color: #fff; /* Keep text light */
+            padding: 12px 30px;
+    /* Remove default browser border if any, add glass border */
+            border: 1px solid var(--glass-border-color);
+            border-radius: var(--border-radius-sm);
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color var(--transition-speed), transform var(--transition-speed), border-color var(--transition-speed); /* Add border transition */
+            box-shadow: 0 4px 8px rgba(45, 57, 96, 0.3); /* Adjusted shadow slightly */
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-color-rgba-hover); /* Use darker RGBA */
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+
+        /* --- Bottom Navigation --- */
+        /* Find this rule */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+    /* --- Glassmorphism START --- */
+            background-color: var(--accent-color-rgba-base); /* Use variable */
+            background-image: var(--glass-shine-gradient); /* Add shine */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border-color); /* Use variable */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    /* --- Glassmorphism END --- */
+            border-radius: var(--border-radius-lg);
+            padding: 10px 15px;
+            z-index: 100;
+            display: flex;
+            gap: 5px;
+        }
+
+        .bottom-nav a {
+            color: var(--nav-text);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius-md);
+            font-size: 0.95em;
+            font-weight: 400;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        /* Find this rule */
+        .bottom-nav a:hover,
+        .bottom-nav a.active {
+            background-color: rgba(255, 255, 255, 0.15); /* Keep subtle white overlay */
+            color: #fff;
+            border-radius: var(--border-radius-md);
+        }
+
+       /* --- Fixed Bottom Right Buttons --- */
+        .fixed-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 99;
+        }
+
+        .fixed-buttons a { /* Target ONLY the link */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+    /* Change background */
+            background-color: var(--accent-color-rgba-base);
+            background-image: var(--glass-shine-gradient);
+            color: var(--nav-text); /* Keep text light */
+            padding: 8px 15px;
+            border-radius: var(--border-radius-sm);
+    /* Add border */
+            border: 1px solid var(--glass-border-color);
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color var(--transition-speed), transform var(--transition-speed), border-color var(--transition-speed); /* Add border transition */
+        }
+        .fixed-buttons span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #f0f4f8; /* Original */
+            color: var(--text-color-secondary); /* Original */
+            padding: 8px 15px;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.85em;
+            font-weight: 500;
+            box-shadow: -2px -2px 4px var(--card-shadow-light), 2px 2px 4px var(--card-shadow-dark); /* Original */
+            cursor: default;
+        }
+
+         .fixed-buttons a:hover {
+             background-color: var(--accent-color-hover);
+             transform: translateY(-2px);
+         }
+         .fixed-buttons span { /* Style for the 'Built with' tag */
+            background-color: #f0f4f8;
+            color: var(--text-color-secondary);
+            box-shadow: -2px -2px 4px var(--card-shadow-light), 2px 2px 4px var(--card-shadow-dark);
+            cursor: default;
+         }
+
+          .fixed-buttons i {
+             font-size: 1em;
+         }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .home-grid {
+                grid-template-columns: 1fr; /* Stack profile card on top */
+            }
+            .profile-card {
+                position: static; /* Remove sticky positioning */
+                margin-bottom: 40px;
+                max-width: 400px; /* Optional: constrain width */
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .contact-grid {
+                 grid-template-columns: 1fr; /* Stack contact options and form */
+            }
+             .main-content {
+                 padding-top: 0;
+             }
+             .main-content h2{
+                font-weight: 400;
+             }
+        }
+
+         @media (max-width: 768px) {
+             body {
+                 font-size: 15px;
+             }
+             .site-header {
+                 padding: 20px;
+                 flex-direction: column;
+                 gap: 15px;
+                 text-align: center;
+             }
+              .header-right {
+                 justify-content: center;
+             }
+             .section-heading h2 {
+                 font-size: 2em;
+             }
+              .contact-header h2 {
+                 font-size: 2.2em;
+             }
+             .bottom-nav {
+                 width: 90%;
+                 padding: 8px 10px;
+                 justify-content: space-around; /* Spread links */
+             }
+             .bottom-nav a {
+                 padding: 8px 12px;
+                 font-size: 0.9em;
+             }
+             .fixed-buttons {
+                right: 15px;
+                bottom: 85px; /* Adjust to avoid overlap with nav */
+             }
+             .fixed-buttons a, .fixed-buttons span {
+                 padding: 6px 10px;
+                 font-size: 0.8em;
+             }
+         }
+
+          @media (max-width: 480px) {
+              .bottom-nav {
+                 bottom: 10px;
+             }
+              .bottom-nav a {
+                 padding: 6px 8px;
+                 font-size: 0.8em;
+             }
+              .fixed-buttons {
+                 bottom: 75px; /* Further adjust */
+             }
+              .social-icons-header {
+                  margin-top: 10px; /* Space when header stacks */
+              }
+             .social-icons-header a {
+                 margin: 0 8px;
+             }
+               .experience-list .experience-item {
+                 flex-direction: column;
+                 align-items: flex-start;
+                 gap: 5px;
+             }
+              .experience-item .year {
+                 align-self: flex-end; /* Move year back to right */
+                 margin-top: -15px; /* Adjust position */
+             }
+          }
+         /* === Keyframes for Ping Animation === */
+            @keyframes ping {
+                75%, 100% {
+                transform: scale(5);
+                opacity: 0;
+                }
+            }
+        /* ================================== */
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="logo">Sanjai Srigaanth</div>
+        <div class="header-right">
+            <div class="availability">
+                <span class="status-dot"></span> Available for work
+            </div>
+            <div class="social-icons-header">
+                <a href="https://github.com/isthatsanjai" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/sanjai-srigaanth/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/isthatsanjai/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <!-- Add other relevant profiles like Kaggle -->
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Home Section -->
+        <section id="home">
+            <div class="home-grid">
+                <!-- Left Sidebar: Profile Card -->
+                <aside class="profile-card">
+                    <div class="profile-image">
+                        <!-- Placeholder image - replace with your actual photo -->
+                        <img src="https://i.ibb.co/JWtQPVTb/prof2.jpg"  alt="Sanjai Srigaanth Profile Picture">
+                    </div>
+                    <div class="availability">
+                        <span class="status-dot"></span> Available for work
+                    </div>
+                    <h1>Sanjai Srigaanth</h1>
+                    <p class="title">Data Scientist Specializing in Machine Learning & Analytics</p>
+                    <div class="profile-social-links">
+                        <a href="https://github.com/isthatsanjai" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/sanjai-srigaanth/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/isthatsanjai/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <!-- Add Kaggle link if applicable -->
+                        <!-- <a href="#" target="_blank" aria-label="Kaggle"><i class="fab fa-kaggle"></i></a> -->
+                    </div>
+                    <a href="#contact" class="contact-me-btn scroll-link">
+                        <i class="fas fa-paper-plane"></i> Contact Me
+                    </a>
+                </aside>
+
+                <!-- Right Content Area -->
+                <div class="main-content">
+                    <p class="intro-text">
+                        I'm Sanjai Srigaanth, a passionate Data Scientist. I leverage data analysis, machine learning, and statistical modeling to extract meaningful insights and drive data-informed decisions. I blend analytical rigor with clear communication to deliver impactful solutions.
+                    </p>
+
+                    <div class="skills-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">Data Visualization</span>
+                        <span class="tag">Pandas & NumPy</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">TensorFlow / PyTorch</span>
+                        <span class="tag">Statistical Analysis</span>
+                        <span class="tag">Cloud Platforms (AWS/Azure)</span>
+                        <span class="tag">Experimentation (A/B Testing)</span>
+                    </div>
+
+                    <hr>
+
+                    <h2>Work Experience</h2>
+                    <div class="experience-list">
+                        <div class="experience-item">
+                            <div>
+                                <div class="role">Data Scientist</div>
+                                <div class="company">Astrikos.ai</div>
+                            </div>
+                            <div class="year">2025</div>
+                        </div>
+                        <div class="experience-item">
+                            <div>
+                                <div class="role">Data Scientist Intern</div>
+                                <div class="company">Shiash Info Solutions</div>
+                            </div>
+                            <div class="year">2024</div>
+                        </div>
+                        <div class="experience-item">
+                            <div>
+                                <div class="role">Machine Learning Engineer</div>
+                                <div class="company">Eidetic Technology Pvt Ltd</div>
+                            </div>
+                            <div class="year">2022</div>
+                        </div>
+                        <div class="experience-item">
+                            <div>
+                                <div class="role">Research Assistant (Data Science)</div>
+                                <div class="company">SRM University</div>
+                            </div>
+                            <div class="year">2021</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                 <!-- Projects Section -->
+        <section id="projects">
+            <div class="section-heading">
+               <h2>Case Studies / Projects</h2>
+               <p>A selection of projects showcasing my skills in data analysis and machine learning.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project Card 1 -->
+                <div class="project-card card">
+                    <img src="https://i.ibb.co/N6GMkYY4/spotyt.webp" alt="Project 1 Visual Placeholder">
+                     <div class="project-content">
+                        <h3>Spot-Tube Audio Downloader</h3>
+                        <p>Developed a web application that allows users to log in via Google or Spotify using OAuth 2.0, select their Spotify playlists, and download the audio directly to their device in MP3 format through Youtube.</p>
+                         <div class="project-tags">
+                            <span class="tag">Spotify API</span>
+                            <span class="tag">FFmpeg</span>
+                            <span class="tag">Yt-dlp</span>
+                            <span class="tag">YouTube API</span>
+                            <span class="tag">Python</span>
+                        </div>
+                         <!-- Optional Link -->
+                        <a href="https://github.com/isthatsanjai/Spot_Tube" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="project-card card">
+                    <img src="https://i.ibb.co/0gwQT9C/facerecog.webp"  alt="Project 2 Visual Placeholder">
+                     <div class="project-content">
+                        <h3>Face Recognition & Categorization</h3>
+                        <p>Designed a face recognition system, for automated image categorization.</p>
+                         <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">deepface</span>
+                            <span class="tag">deep-learning</span>
+                            <span class="tag">computer-vision</span>
+                             <span class="tag">vgg-face</span>
+                        </div>
+                         <!-- Optional Link -->
+                        <a href="https://github.com/isthatsanjai/Face_recognition-and-categorization-" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Project Card 3 (Starts new row) -->
+                <div class="project-card card">
+                    <img src="https://i.ibb.co/N6z79SqL/data-analysis.webp" alt="Project 3 Visual Placeholder">
+                     <div class="project-content">
+                        <h3>HR Data Analytics</h3>
+                        <p>Designed a Power BI dashboard to track employee data for the HR team, including working hours, attendance, performance and leaves. Steamlined the process and increased efficiency.</p>
+                         <div class="project-tags">
+                            <span class="tag">Pandas</span>
+                            <span class="tag">NumPy</span>
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Excel</span>
+                            
+                        </div>
+                         <!-- Optional Link -->
+                        <a href="https://drive.google.com/drive/folders/1NbatVRfWeNJzTbd3dTOUwelBgJhGZJ8O?usp=drive_link" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                 <!-- Project Card 4 -->
+                 <div class="project-card card">
+                    <img src="https://i.ibb.co/sv5rh4rQ/noise-tolerant-Motion-detection.webp" alt="Project 4 Visual Placeholder">
+                     <div class="project-content">
+                        <h3>Real-Time Surveillance System </h3>
+                        <p>Engineered an advanced motion detection system by leveraging OpenCV's Background Subtractor MOG2 algorithm to dynamically distinguish between static and moving objects in live video streams.</p>
+                         <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">OpenCV</span>
+                            <span class="tag">Flask</span>
+                            <span class="tag">Numpy</span>
+                             <span class="tag">Fourier Transformation</span>
+                        </div>
+                         <!-- Optional Link -->
+                        <a href="https://github.com/isthatsanjai/realtime_motion_detection" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Add more project cards here following the same structure -->
+
+            </div>
+        </section>
+        <!-- End of Projects Section -->
+
+        <!-- Services Section -->
+        <section id="services">
+             <div class="section-heading">
+                <h2>What I Offer</h2>
+                <p>Leveraging data to create value and solve complex problems.</p>
+             </div>
+
+            <div class="services-grid">
+                <div class="service-card card">
+                    <span class="icon"><i class="fas fa-brain"></i></span>
+                    <h3>Machine Learning Models</h3>
+                    <p>Developing, training, and deploying predictive models for classification, regression, clustering, and more.</p>
+                     <!-- Optional Image -->
+                     <!-- <img src="placeholder-ml.jpg" alt="Machine Learning Abstract"> -->
+                </div>
+                 <div class="service-card card">
+                    <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                    <h3>Data Analysis & Insights</h3>
+                    <p>Performing exploratory data analysis (EDA), identifying trends, and extracting actionable insights from complex datasets.</p>
+                </div>
+                 <div class="service-card card">
+                    <span class="icon"><i class="fas fa-chart-line"></i></span>
+                    <h3>Data Visualization</h3>
+                    <p>Creating clear, compelling visualizations and dashboards (using tools like Tableau, Power BI, Matplotlib, Seaborn) to communicate findings effectively.</p>
+                     <!-- Optional Image -->
+                     <!-- <img src="placeholder-viz.jpg" alt="Data Visualization Abstract"> -->
+                </div>
+                 <div class="service-card card">
+                    <span class="icon"><i class="fas fa-cogs"></i></span>
+                    <h3>Data Engineering & Pipelines</h3>
+                    <p>Building robust data pipelines for collection, cleaning, transformation, and processing of data for analysis and modeling.</p>
+                </div>
+                <div class="service-card card">
+                    <span class="icon"><i class="fas fa-chart-bar"></i></span> <!-- Icon for dashboard/BI -->
+                    <h3>Business Intelligence</h3>
+                    <p>Creating interactive dashboards and automated reports to monitor key metrics and provide actionable business insights.</p>
+                </div>
+                <div class="service-card card">
+                    <span class="icon"><i class="fas fa-project-diagram"></i></span> <!-- Icon for strategy/guidance -->
+                    <h3>Data Strategy Consulting</h3>
+                    <p>Advising on data infrastructure, defining data-driven goals, and helping build organizational data literacy and capabilities.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-header">
+                 <h2>Reach Me Anytime</h2>
+                 <p>Have questions or want to discuss a project? I'm here to help.</p>
+            </div>
+            <div class="contact-grid">
+                 <!-- Left Side: Contact Options -->
+                 <div class="contact-options">
+                     <div class="card">
+                         <h3><i class="fas fa-envelope"></i> Email Me</h3>
+                         <p>Feel free to email me if you have any questions or need more details!</p>
+                         <a href="mailto:isthatsanjaisrigaanth@gmail.com">isthatsanjaisrigaanth@gmail.com</a>
+                     </div>
+                     <div class="card">
+                        <h3><i class="fas fa-calendar-alt"></i> Prefer to Chat?</h3>
+                        <p>Happy to schedule a brief call to discuss your needs.</p>
+                        <!-- Link to Calendly or similar booking tool -->
+                        <a href="https://calendly.com/isthatsanjaisrigaanth" target="_blank">Book a Call</a>
+                     </div>
+                 </div>
+
+                 <!-- Right Side: Contact Form -->
+                 <div class="contact-form">
+                     <div class="card">
+                        <!-- Inside the .contact-form .card -->
+                        <h3>I'd love to help! Let me know how</h3>
+                        <form id="contactForm" action="https://formspree.io/f/xvgkwzgo" method="POST">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                    
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">How can I assist you?</label>
+                                <textarea id="message" name="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    <p id="form-message" style="margin-top: 15px; font-size: 0.9em;"></p>
+                <!-- End of form container -->
+                    </div>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#home" class="scroll-link active">Home</a>
+        <a href="#projects" class="scroll-link">Projects</a>
+        <a href="#services" class="scroll-link">Services</a>
+        <a href="#contact" class="scroll-link">Contact</a>
+    </nav>
+
+    <!-- Fixed Bottom Right Buttons -->
+     <div class="fixed-buttons">
+         <!-- Replace '#' with link to your actual resume file -->
+         <a href="https://drive.google.com/uc?export=download&id=1WDLhTMyPCA00zJiQ6qU7nawF4loalCSa" download="Sanjai_Srigaanth_Resume.pdf">
+             <i class="fas fa-file-arrow-down"></i> Get Resume
+         </a>
+          <span>
+             <i class="fas fa-code"></i> Built with HTML/CSS/JS
+          </span>
+    </div>
+    <script>
+        // Function to get header height (adjust selector if needed)
+        function getHeaderHeight() {
+            const header = document.querySelector('.site-header');
+            return header ? header.offsetHeight : 0; // Get rendered height
+        }
+        
+        // Attach listener to all scroll links
+        document.querySelectorAll('a.scroll-link').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent default anchor jump
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            const headerOffset = getHeaderHeight();
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset; // Position relative to document top
+
+            // --- CHANGE THIS LINE ---
+            // const offsetPosition = elementPosition - headerOffset - 20; // Original - Subtracts too much
+            const offsetPosition = elementPosition - headerOffset; // Corrected - Only subtract header height
+            // --- END CHANGE ---
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+
+            // --- Optional: Small adjustment for nav update timing ---
+            // It can sometimes take a fraction of a second for the scroll to fully "settle"
+            // and for the scroll listener to fire. We can proactively update the nav link here.
+            document.querySelectorAll('.bottom-nav a').forEach(link => link.classList.remove('active'));
+            const navLink = document.querySelector(`.bottom-nav a[href="${targetId}"]`);
+             if (navLink) {
+                // Delay slightly OR update immediately - immediate is usually fine
+                 navLink.classList.add('active');
+             } else if (this.closest('.profile-card')) { // Handle profile card 'Contact Me'
+                  document.querySelector('.bottom-nav a[href="#contact"]')?.classList.add('active');
+             }
+             // No need for 'this.classList.add('active')' here if we target the nav link directly
+
+        }
+    });
+});
+
+// --- Keep the Active Nav Link Highlighting on Scroll ---
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.bottom-nav a');
+
+function changeNavOnScroll() {
+    let scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const headerHeight = getHeaderHeight();
+    // A small buffer can help prevent visual flickering at exact pixel boundaries
+    const buffer = 35; // Increased buffer slightly, adjust if needed
+
+    let currentActiveSectionId = null; // To store the ID of the section determined to be active
+
+    // Loop through sections from top to bottom
+    sections.forEach(current => {
+        const sectionTop = current.offsetTop - headerHeight; // Visual top edge below the header
+        const sectionHeight = current.offsetHeight;
+        const sectionId = current.getAttribute('id');
+
+        // Condition: Is the section's visual top edge at or above the current scroll position?
+        // (scrollY + buffer is the effective position we're checking against)
+        // AND is the scroll position NOT past the bottom of this section?
+        if (sectionTop <= scrollY + buffer && scrollY < sectionTop + sectionHeight - buffer) {
+            // If both conditions are true, this section is currently in view near the top
+            currentActiveSectionId = sectionId;
+             // No need to break here, let later sections override if they also match (e.g., when scrolling up fast)
+             // Update: Actually, let's try finding the LAST section whose top is above scrollY
+        }
+    });
+
+    // --- Refined Logic: Find the LAST section whose top is above the scroll position ---
+    currentActiveSectionId = null; // Reset
+     for (let i = 0; i < sections.length; i++) {
+         const current = sections[i];
+         const sectionTop = current.offsetTop - headerHeight;
+         const sectionId = current.getAttribute('id');
+
+         // If this section's top is above or very close to the current scroll position (+ buffer)
+         if (sectionTop <= scrollY + buffer) {
+             currentActiveSectionId = sectionId; // Update the candidate
+         } else {
+             // If we find a section whose top is *below* the scroll position,
+             // the previous one (`currentActiveSectionId`) must be the correct one.
+             break;
+         }
+     }
+    // --- End Refined Logic ---
+
+
+    // --- Handle Edge Cases AFTER the loop ---
+
+    // Edge Case 1: Scrolled near the very bottom of the page - force 'Contact'
+    // Check if the bottom of the viewport is within ~50px of the total document height
+    if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) {
+        if (document.querySelector('#contact')) { // Ensure contact section exists
+             currentActiveSectionId = 'contact'; // Override whatever the loop found
+        }
+    }
+
+    // Edge Case 2: Scrolled near the very top - force 'Home'
+    // Check if scrollY is very low (e.g., less than half the header height)
+    // OR check if it's above the calculated visual top of the *first* actual section (e.g., projects)
+    const firstSection = sections[0]; // Assuming sections are in document order
+    if (firstSection) {
+        const firstSectionTop = firstSection.offsetTop - headerHeight;
+        // If scrolled above the visual start of the first section (minus buffer)
+         if (scrollY < firstSectionTop - buffer || scrollY < headerHeight / 2) { // Added check for very top
+            currentActiveSectionId = 'home'; // Override
+         }
+    } else if (scrollY < headerHeight) {
+         // Fallback if no sections are found but scrolled near top
+         currentActiveSectionId = 'home';
+    }
+
+
+    // --- Update Navigation Links ---
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentActiveSectionId) {
+            link.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', changeNavOnScroll);
+changeNavOnScroll(); // Initial check
+
+
+            window.addEventListener('scroll', changeNavOnScroll);
+// Initial check in case the page loads scrolled
+            changeNavOnScroll();
+
+        // --- Basic Contact Form Handler (Prevents actual submission) ---
+                // --- Corrected Contact Form Handler with Formspree AJAX ---
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('form-message');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Stop default HTML form submission
+
+                // --- FIX: Define form, formData, and action HERE ---
+                const form = e.target; // Get the form element that triggered the event
+                const formData = new FormData(form); // Create FormData from the submitted form
+                const action = form.action; // Get the Formspree URL from the form's action attribute
+                // --- END FIX ---
+
+                formMessage.textContent = 'Sending...'; // Indicate sending
+                formMessage.style.color = 'var(--text-color-secondary)';
+
+                fetch(action, { // Now 'action' is defined
+                    method: 'POST',
+                    body: formData, // Now 'formData' is defined
+                    headers: {
+                        'Accept': 'application/json' // Important for Formspree AJAX
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        // Success!
+                        formMessage.textContent = "Thank you! Your message has been sent successfully.";
+                        formMessage.style.color = "green";
+                        form.reset(); // Clear the form fields (use the 'form' variable defined above)
+                    } else {
+                        // Try to get specific error from Formspree response
+                        response.json().then(data => {
+                            if (Object.hasOwn(data, 'errors')) {
+                                formMessage.textContent = data["errors"].map(error => error["message"]).join(", ");
+                            } else {
+                                formMessage.textContent = "Oops! There was a problem submitting your form. Please try again.";
+                            }
+                            formMessage.style.color = "red";
+                        }).catch(error => {
+                             // Fallback error if response isn't JSON
+                             formMessage.textContent = "Oops! There was a problem submitting your form. Please try again.";
+                             formMessage.style.color = "red";
+                        });
+                    }
+                }).catch(error => {
+                    // Network or other fetch-related error
+                    console.error('Fetch Error:', error); // Log the actual error for debugging
+                    formMessage.textContent = "Oops! There was a network error. Please check your connection and try again.";
+                    formMessage.style.color = "red";
+                }).finally(() => {
+                     // Clear the message after a few seconds regardless of success/failure
+                     setTimeout(() => { formMessage.textContent = ''; }, 6000);
+                });
+            });
+        }
+
+    </script>
+
+    <!-- Add ScrollReveal.js Library via CDN -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- Add Script to Initialize ScrollReveal -->
+    <script>
+        // Initialize ScrollReveal with reset: true
+        const sr = ScrollReveal({
+            // Default options (can be overridden per reveal)
+            origin: 'bottom',
+            distance: '40px',  // Slightly less distance for some defaults
+            duration: 700,     // Default duration
+            delay: 100,        // Default delay
+            opacity: 0,        // Start transparent
+            scale: 1,          // Default: no scaling
+            easing: 'cubic-bezier(0.5, 0, 0, 1)', // A smoother easing
+            // --- KEY CHANGE ---
+            reset: true        // Animations reset when scrolling out of view
+        });
+
+        // --- Apply DIFFERENT reveal effects ---
+
+        // Home Section - Gentle entrances
+        sr.reveal('.profile-card', {
+            origin: 'left',
+            distance: '60px',
+            duration: 900,
+            delay: 200,
+            scale: 0.95
+        });
+        sr.reveal('.main-content .intro-text', {
+            origin: 'right',
+            distance: '60px',
+            delay: 300,
+            duration: 900
+        });
+        sr.reveal('.main-content .skills-tags .tag', { // Target individual tags
+            origin: 'bottom',
+            distance: '20px',
+            interval: 50, // Very short interval for quick popping effect
+            scale: 0.9,
+            delay: 400 // Wait for intro text
+        });
+        sr.reveal('.main-content h2', { // Work Experience Title
+             origin: 'top',
+             distance: '30px',
+             delay: 100, // Reveal faster than items below
+             scale: 1 // override default if any
+        });
+        sr.reveal('.experience-item', {
+             origin: 'bottom',
+             distance: '30px',
+             interval: 100, // Stagger list items
+             scale: 0.98
+        });
+
+        // Project Section - Rotate and fade
+         sr.reveal('.projects-grid .project-card', {
+            scale: 0.85, // Start smaller
+            interval: 100,
+            duration: 600,
+            distance: '0px' // Override distance if not needed for scale
+         });
+
+        // Services Section - Scale up / Zoom in
+        sr.reveal('.services-grid .service-card', {
+            scale: 0.85, // Start smaller
+            interval: 100,
+            duration: 600,
+            distance: '0px' // Override distance if not needed for scale
+        });
+
+        // Contact Section - Slide opposites
+        sr.reveal('.contact-header h2, .contact-header p', {
+             origin: 'top',
+             distance: '30px',
+             delay: 150
+         });
+        sr.reveal('.contact-options .card', {
+            origin: 'left',
+            distance: '80px',
+            interval: 150,
+            duration: 700
+        });
+        sr.reveal('.contact-form .card', {
+            origin: 'right',
+            distance: '80px',
+            duration: 700,
+            delay: 250 // Delay slightly after left cards start
+        });
+
+        // Generic Section Headings (Can customize further if needed)
+        sr.reveal('.section-heading h2', {
+             origin: 'top',
+             distance: '20px',
+             duration: 600,
+             delay: 50,
+             scale: 1 // Reset scale
+         });
+         sr.reveal('.section-heading p', {
+             origin: 'bottom',
+             distance: '20px',
+             duration: 600,
+             delay: 100,
+             scale: 1 // Reset scale
+         });
+    </script> 
+
+</body>
+</html>
